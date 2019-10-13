@@ -12,10 +12,10 @@ def bubble_sort(array)
     end
     array
   end
-
+  
   # bubble sort by method
-
-def bubble_sort_by(array)
+  
+  def bubble_sort_by(array)
     switch = true
     while switch
       switch = false
@@ -28,8 +28,8 @@ def bubble_sort_by(array)
     end
     array
   end
-
+  
   # tests 
-puts bubble_sort([4,3,78,2,0,2])
-puts ' '
-puts bubble_sort_by(["hi","hello","hey"]) { |left,right| left.length - right.length}
+  puts bubble_sort([4,3,78,2,0,2])
+  puts ' '
+  puts bubble_sort_by(["hi","hello","hey"]) { |left,right| left.length - right.length}
