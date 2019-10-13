@@ -12,3 +12,19 @@ def bubble_sort(array)
     end
     array
   end
+
+  # bubble sort by method
+
+def bubble_sort_by(array)
+    switch = true
+    while switch
+      switch = false
+      (0...array.length - 1).each do |i|
+        if yield(array[i], array[i + 1]).positive? 
+          array[i], array[i + 1] = array[i + 1], array[i]
+          switch = true
+        end
+      end
+    end
+    array
+  end
