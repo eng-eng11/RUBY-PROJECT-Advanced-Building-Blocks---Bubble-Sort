@@ -15,41 +15,46 @@ This is the first project of the main `Ruby` curriculum at [Microverse](https://
 ``` rb
 
 def bubble_sort(array)
-    switch = true
-    while switch
-      switch = false
-      (0...array.length - 1).each do |i|  
-        if array[i] > array[i + 1] # if this condition is not true switch maintains false
-          array[i], array[i + 1] = array[i + 1], array[i]
-          switch = true # loop again
-        end 
-      end
+  not_sorted = true, n = array.length - 1
+  sorting(not_sorted, array, n)
+  array
+end
+
+def sorting(not_sorted, array, index)
+  while not_sorted
+    not_sorted = false
+    (0...index).each do |i|
+      next unless array[i] > array[i + 1]
+
+      array[i], array[i + 1] = array[i + 1], array[i]
+      not_sorted = true
     end
-    array
+    index -= 1
   end
+end
   ```
 
 2. Build another method `#bubble_sort_by` which sorts an array by accepting a block
 
 ``` rb
 def bubble_sort_by(array)
-    switch = true
-    while switch
-      switch = false
-      (0...array.length - 1).each do |i|
-        if yield(array[i], array[i + 1]).positive? 
-          array[i], array[i + 1] = array[i + 1], array[i]
-          switch = true
-        end
-      end
+  not_sorted = true, n = array.length - 1
+  while not_sorted
+    not_sorted = false
+    (0...n).each do |i|
+      next unless yield(array[i], array[i + 1]) > 0
+
+      array[i], array[i + 1] = array[i + 1], array[i], not_sorted = true
     end
-    array
+    n -= 1
   end
-  
-  # tests 
-  puts bubble_sort([4,3,78,2,0,2])
-  puts ' '
-  puts bubble_sort_by(["hi","hello","hey"]) { |left,right| left.length - right.length}
+  array
+end
+
+bubble_sort_by(['hi', 'hello', 'hey']) do |left, right|
+  left.length <=> right.length
+end
+# ["hi", "hey", "hello"]
 ```
 
 
