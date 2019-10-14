@@ -1,37 +1,24 @@
 # frozen_string_literal: true
 
-# bubble sort method
 def bubble_sort(array)
-  switch = true
-  while switch
-    switch = false
-    (0...array.length - 1).each do |i|
-      if array[i] > array[i + 1] # if this condition is not true switch maintains false
-        array[i], array[i + 1] = array[i + 1], array[i]
-        switch = true # loop again
-       end
-    end
-  end
+  not_sorted = true, n = array.length - 1
+  sorting(not_sorted, array, n)
   array
 end
 
-# bubble sort by method
+def sorting(not_sorted, array, index)
+  while not_sorted
+    not_sorted = false
+    (0...index).each do |i|
+      next unless array[i] > array[i + 1]
 
-def bubble_sort_by(array)
-  switch = true
-  while switch
-    switch = false
-    (0...array.length - 1).each do |i|
-      if yield(array[i], array[i + 1]).positive?
-        array[i], array[i + 1] = array[i + 1], array[i]
-        switch = true
-      end
+      array[i], array[i + 1] = array[i + 1], array[i]
+      not_sorted = true
     end
+    index -= 1
   end
-  array
 end
 
-# tests
-puts bubble_sort([4, 3, 78, 2, 0, 2])
-puts ' '
-puts bubble_sort_by(%w[hi hello hey]) { |left, right| left.length - right.length }
+p bubble_sort([4, 3, 78, 2, 0, 2])
+
+#=> [0,2,2,3,4,78]
