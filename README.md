@@ -53,12 +53,10 @@ def bubble_sort_by(array)
   array
 end
 
-array = %w[hi hello hey]
 bubble_sort_by(array) do |left, right|
   left.length <=> right.length
 end
 p array
-
-#=> ["hi", "hey", "hello"]  
+ 
 ```
 
