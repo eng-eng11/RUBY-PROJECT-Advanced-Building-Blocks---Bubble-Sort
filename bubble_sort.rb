@@ -9,11 +9,11 @@ def bubble_sort(array)
       if array[i] > array[i + 1] # if this condition is not true switch maintains false
         array[i], array[i + 1] = array[i + 1], array[i]
         switch = true # loop again
-      end
+       end
     end
   end
   array
-  end
+end
 
 # bubble sort by method
 
