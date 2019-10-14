@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/WordArray
 def bubble_sort_by(array)
   not_sorted = true, n = array.length - 1
   while not_sorted
@@ -15,12 +14,10 @@ def bubble_sort_by(array)
   array
 end
 
-array = ['hi', 'hello', 'hey']
+array = %w[hi hello hey]
 bubble_sort_by(array) do |left, right|
   left.length <=> right.length
 end
 p array
 
 #=> ["hi", "hey", "hello"]
-
-# rubocop:enable Style/WordArray
