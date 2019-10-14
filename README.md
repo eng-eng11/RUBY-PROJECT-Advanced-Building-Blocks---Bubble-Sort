@@ -37,12 +37,15 @@ end
 2. Build another method `#bubble_sort_by` which sorts an array by accepting a block
 
 ``` rb
+# frozen_string_literal: true
+
+# rubocop:disable Style/WordArray
 def bubble_sort_by(array)
   not_sorted = true, n = array.length - 1
   while not_sorted
     not_sorted = false
     (0...n).each do |i|
-      next unless yield(array[i], array[i + 1]) > 0
+      yield(array[i], array[i + 1]).positive?
 
       array[i], array[i + 1] = array[i + 1], array[i], not_sorted = true
     end
@@ -51,10 +54,16 @@ def bubble_sort_by(array)
   array
 end
 
-bubble_sort_by(['hi', 'hello', 'hey']) do |left, right|
+array = ['hi', 'hello', 'hey']
+bubble_sort_by(array) do |left, right|
   left.length <=> right.length
 end
-# ["hi", "hey", "hello"]
+p array
+
+#=> ["hi", "hey", "hello"]
+
+# rubocop:enable Style/WordArray
+
 ```
 
 
