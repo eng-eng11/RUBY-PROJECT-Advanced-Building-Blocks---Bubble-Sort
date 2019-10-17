@@ -1,21 +1,45 @@
 # frozen_string_literal: true
 
-def bubble_sort(arr)
-  arr.each do
-    i = 0
-    swap = 0
-    while i < arr.length - 1
-      if arr[i] > arr[i + 1]
-        temp = arr[i]
-        arr[i] = arr[i + 1]
-        arr[i + 1] = temp
+# bubble_sort
+def bubble_sort(array)
+  arr = array.length
+
+  loop do
+    action = false
+    (arr - 1).times do |i|
+      if array[i] > array[i + 1]
+        array[i], array[i + 1] = array[i + 1], array[i]
+        action = true
       end
-      i += 1
-      swap += 1
     end
-    break if swap.zero?
+
+    break unless action
   end
-  arr
+
+  array
 end
 
-p bubble_sort([3, 1, 5, 6, 2, 4, 7, 8])
+# bubble_sort_by
+def bubble_sort_by(array)
+  switch = true
+
+  while switch
+    (0...array.length - 1).each do |i|
+      result = yield(array[i], array[i + 1])
+      if result.positive?
+        array[i], array[i + 1] = array[i + 1], array[i]
+      else
+        switch = false
+      end
+    end
+  end
+
+  p array
+end
+
+# test given on The Odin Project
+bubble_sort_by(%w[hi hello hey]) do |left, right|
+  left.length - right.length
+end
+
+p bubble_sort([58, 67, 68, 69, 70, 9, 6, 2, 7, 78, 5, 3, 2, 4, 6, 8])
