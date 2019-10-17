@@ -1,23 +1,20 @@
-# frozen_string_literal: true
+
+# array = ["hi","hello","hey"]
 
 def bubble_sort_by(array)
-  not_sorted = true, n = array.length - 1
-  while not_sorted
-    not_sorted = false
-    (0...n).each do |i|
-      next unless yield(array[i], array[i + 1]).positive?
-
-      array[i], array[i + 1] = array[i + 1], array[i], not_sorted = true
+  len = array.length
+  (0...len).each do
+    (len - 2).times do |j|
+      if yield(array[j], array[j + 1]) > 0
+        array[j + 1], array[j] = array[j], array[j + 1]
+      end
     end
-    n -= 1
   end
   array
 end
 
-array = %w[hi hello hey]
 bubble_sort_by(array) do |left, right|
-  left.length <=> right.length
+  left.length - right.length
 end
-p array
 
-#=> ["hi", "hey", "hello"]
+# print array
