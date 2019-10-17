@@ -1,19 +1,25 @@
-# frozen_string_literal: true
+def bubble_sort_by(arr)
+    arr.each do |left,right|
+        i = 0
+        swap = 0
 
-# array = ["hi","hello","hey"]
+        while i < arr.length-1 do
+            if block_given?
+                yield_ = yield(arr[i], arr[i+1])
+            end
 
-def bubble_sort_by(array)
-  len = array.length
-  (0...len).each do
-    (len - 2).times do |j|
-      array[j + 1], array[j] = array[j], array[j + 1] if yield(array[j], array[j + 1]).positive?
+            yield_ = arr[i] > arr[i+1]
+            if yield_
+                temp = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = temp
+            end
+            i += 1
+            swap += 1
+        end
+        break if swap == 0  
     end
-  end
-  array
+    arr
 end
 
-bubble_sort_by(array) do |left, right|
-  left.length - right.length
-end
-
-# print array
+p bubble_sort_by(["hill", "hel", "world"]){|left, right| left.length - right.length}

@@ -1,18 +1,21 @@
-# frozen_string_literal: true
+def bubble_sort(arr)
+    arr.each do
+        i = 0
+        swap = 0
+        while i < arr.length-1 do
+            if arr[i] > arr[i+1]
+                temp = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = temp
+            end
+            i += 1
+            swap += 1
+        end
+        break if swap == 0
 
-array = [1, 6, 7, 8, 8, 5, 9, 2]
-
-def bubble_sort(array)
-  len = array.count
-  k = len - 2
-
-  (0..len - 1).each do |_j|
-    (0..k).each do |i|
-      array[i + 1], array[i] = array[i], array[i + 1] if array[i] > array[i + 1]
     end
-    k -= 1
-  end
-  array
+    arr
+
 end
 
-print bubble_sort(array)
+p bubble_sort([3,1,5,6,2,4,7,8])
