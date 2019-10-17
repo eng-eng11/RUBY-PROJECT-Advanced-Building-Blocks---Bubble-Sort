@@ -17,7 +17,7 @@ def bubble_sort_by(arr)
       i += 1
       swap += 1
     end
-    break if swap == 0
+    break if swap.zero?
   end
   arr
 end
