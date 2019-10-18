@@ -17,6 +17,7 @@ end
 p bubble_sort([3, 1, 5, 6, 2, 4, 7, 8])
 
 def bubble_sort_by(array)
+  raise 'No block_given' if block_given?
   return bubble_sort(array) unless block_given?
 
   (0..array.size - 2).each do |_i|
