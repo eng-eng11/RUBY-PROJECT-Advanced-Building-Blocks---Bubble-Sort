@@ -1,24 +1,45 @@
 # frozen_string_literal: true
 
-def bubble_sort(array)
-  not_sorted = true, n = array.length - 1
-  sorting(not_sorted, array, n)
-  array
-end
-
-def sorting(not_sorted, array, index)
-  while not_sorted
-    not_sorted = false
-    (0...index).each do |i|
-      next unless array[i] > array[i + 1]
-
-      array[i], array[i + 1] = array[i + 1], array[i]
-      not_sorted = true
+def bubble_sort(arr)
+  arr.each do
+    i = 0
+    swap = 0
+    while i < arr.length - 1
+      if arr[i] > arr[i + 1]
+        temp = arr[i]
+        arr[i] = arr[i + 1]
+        arr[i + 1] = temp
+      end
+      i += 1
+      swap += 1
     end
-    index -= 1
+    break if swap.zero?
   end
+  arr
 end
 
-p bubble_sort([4, 3, 78, 2, 0, 2])
+p bubble_sort([3, 1, 5, 6, 2, 4, 7, 8])
 
-#=> [0,2,2,3,4,78]
+def bubble_sort_by(arr)
+  arr.each do |_left, _right|
+    i = 0
+    swap = 0
+
+    while i < arr.length - 1
+      yield_ = yield(arr[i], arr[i + 1]) if block_given?
+
+      yield_ = arr[i] > arr[i + 1]
+      if yield_
+        temp = arr[i]
+        arr[i] = arr[i + 1]
+        arr[i + 1] = temp
+      end
+      i += 1
+      swap += 1
+    end
+    break if swap.zero?
+  end
+  arr
+end
+
+p bubble_sort_by(%w[hill hel world]) { |left, right| left.length - right.length }
