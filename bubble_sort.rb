@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# this method sorts a given array of numbers using a bubble sort algorithm
 def bubble_sort(arr)
   arr.each do
     i = 0
@@ -18,28 +19,20 @@ def bubble_sort(arr)
   arr
 end
 
-p bubble_sort([3, 1, 5, 6, 2, 4, 7, 8])
+# this method sorts an array by accepting a block
+def bubble_sort_by(array)
+  raise 'No block_given' unless block_given?
 
-def bubble_sort_by(arr)
-  arr.each do |_left, _right|
-    i = 0
-    swap = 0
+  len = array.length - 1
+  len.step(1, -1) do |a|
+    (0...a).each do |i|
+      test = yield(array[i], array[i + 1])
+      next unless test.positive?
 
-    while i < arr.length - 1
-      yield_ = yield(arr[i], arr[i + 1]) if block_given?
-
-      yield_ = arr[i] > arr[i + 1]
-      if yield_
-        temp = arr[i]
-        arr[i] = arr[i + 1]
-        arr[i + 1] = temp
-      end
-      i += 1
-      swap += 1
+      temp = array[i]
+      array[i] = array[i + 1]
+      array[i + 1] = temp
     end
-    break if swap.zero?
   end
-  arr
+  array
 end
-
-p bubble_sort_by(%w[hill hel world]) { |left, right| left.length - right.length }
