@@ -10,7 +10,8 @@ A demo for the project can be found [here](https://repl.it/@DavidAuza/Bubble-Sor
 
 - [David Auza](https://github.com/davidauza-engineer)
 
-- [Falguni Islam](https://github.com/falguniislam)
+- [Falguni Islam](https://github.com/falguniislam) [demo](https://repl.it/@islamfalguni/Bubble-Sort-Algorithm-Demo)
+
 
 ## Code
 
