@@ -16,7 +16,7 @@ def bubble_sort(arr)
     end
     break if swap.zero?
   end
-  puts arr.join(' ')
+  arr
 end
 
 # this method sorts an array by accepting a block
@@ -34,5 +34,5 @@ def bubble_sort_by(array)
       array[i + 1] = temp
     end
   end
-  puts array.join(' ')
+  array
 end
