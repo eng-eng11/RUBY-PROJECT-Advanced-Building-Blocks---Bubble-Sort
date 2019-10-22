@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # this method sorts a given array of numbers using a bubble sort algorithm
 def bubble_sort(arr)
   arr.each do
@@ -16,6 +14,7 @@ def bubble_sort(arr)
     end
     break if swap.zero?
   end
+  puts arr.join(' ')
 end
 
 # this method sorts an array by accepting a block
@@ -33,5 +32,13 @@ def bubble_sort_by(array)
       array[i + 1] = temp
     end
   end
-  puts array
+  puts array.join(' ')
 end
+
+bubble_sort([4,3,78,2,0,2])
+# => [0,2,2,3,4,78]
+
+bubble_sort_by(["hi","hello","hey"]) do |left,right|
+  left.length - right.length
+end
+# => ["hi", "hey", "hello"]
