@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # this method sorts a given array of numbers using a bubble sort algorithm
 def bubble_sort(arr)
   arr.each do
